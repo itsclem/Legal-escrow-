@@ -1,5 +1,6 @@
 # ShieldPay Ruby gem
 <img src="https://apiuat.shieldpay.com/images/img-shieldpay-logo-color.svg" width="300">
+
 Connect to the [ShieldPay api](https://www.shieldpay.com) with this gem.
 
 ## Installation
