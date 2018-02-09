@@ -11,7 +11,7 @@ describe ShieldPay::Company do
 
     stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
                                      params,
-                                     "create_company.json")
+                                     "company/created_successfully.json")
 
     company = ShieldPay::Company.create(email: "chris@bananas.com",
                                         identifier: "00000001",
@@ -29,5 +29,43 @@ describe ShieldPay::Company do
     expect(company.post_code).to eq("SW1A 1AA")
     expected_time = Time.parse("2018-02-09T11:03:08.9005669+00:00")
     expect(company.created_on).to eq(expected_time)
+  end
+
+  it "can't create a company that already exists" do
+    params = {
+      "CountryCode" => "GB",
+      "Email" => "chris@bananas.com",
+      "Identifier" => "00000001",
+      "Phone" => "555 12345",
+    }
+
+    stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
+                                     params,
+                                     "company/already_exists.json")
+
+    attrs = {
+      email: "chris@bananas.com", identifier: "00000001", phone: "555 12345"
+    }
+    expected_error = ShieldPay::Errors::AlreadyExists
+    expect { ShieldPay::Company.create(attrs) }.to raise_error(expected_error)
+  end
+
+  it "can't create a company where the company identifier can't be found" do
+    params = {
+      "CountryCode" => "GB",
+      "Email" => "chris@bananas.com",
+      "Identifier" => "00000001",
+      "Phone" => "555 12345",
+    }
+
+    stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
+                                     params,
+                                     "company/invalid_identifier.json")
+
+    attrs = {
+      email: "chris@bananas.com", identifier: "00000001", phone: "555 12345"
+    }
+    expected_error = ShieldPay::Errors::InvalidCompanyIdentifier
+    expect { ShieldPay::Company.create(attrs) }.to raise_error(expected_error)
   end
 end

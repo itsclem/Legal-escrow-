@@ -1,8 +1,9 @@
 module ShieldPay
   class Company
 
-    attr_accessor :country_code, :email, :identifier, :phone, :customer_key,
-                  :name, :address, :locality, :post_code, :created_on
+    attr_accessor :address, :country_code, :customer_key, :created_on, :email,
+                  :identifier, :locality, :name, :phone, :post_code
+
 
     # Contact Params
     # Parameter      Optional?  Description
@@ -18,20 +19,20 @@ module ShieldPay
 
       customer_key = response["Data"]["CustomerKey"]
       new(response["Data"]["Data"]).tap do |c|
-        c.customer_key = customer_key
         c.country_code = params[:country_code]
-        c.phone = params[:phone]
+        c.customer_key = customer_key
         c.identifier = params[:identifier]
+        c.phone = params[:phone]
       end
     end
 
     def initialize(attrs)
-      @email = attrs["Email"]
-      @name = attrs["CompanyName"]
       @address = attrs["Address"]
-      @locality = attrs["Locality"]
-      @post_code = attrs["PostalCode"]
       @created_on = Time.parse(attrs["CreatedOn"])
+      @email = attrs["Email"]
+      @locality = attrs["Locality"]
+      @name = attrs["CompanyName"]
+      @post_code = attrs["PostalCode"]
     end
 
   end

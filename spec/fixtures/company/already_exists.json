@@ -1,0 +1,11 @@
+{
+  "coreRes": {
+    "status": 0,
+    "userMessage": "Company identifier already exist. Please contact your system administrator",
+    "errorNo": "2",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null
+  },
+  "Data": null
+}

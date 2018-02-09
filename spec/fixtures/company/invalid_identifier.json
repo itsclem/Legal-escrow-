@@ -1,0 +1,11 @@
+{
+  "coreRes": {
+    "status": 0,
+    "userMessage": "Company identifier could not be validated",
+    "errorNo": "2",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null
+  },
+  "Data": null
+}

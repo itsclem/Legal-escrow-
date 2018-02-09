@@ -53,9 +53,10 @@ module ShieldPay
     end
 
     def parse_response(response)
-      check_for_error(response.response.code, response.body)
+      as_json = JSON.parse(response.body.to_s)
+      check_for_error(as_json)
       display_debug(response.body)
-      JSON.parse(response.body.to_s)
+      as_json
     end
 
     def underscore_to_camel_case(string)
