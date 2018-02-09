@@ -38,7 +38,7 @@ endpoint_url|The endpoint url used for the api. You can change this if you want 
 ShieldPay.configure do |config|
   config.country_code = "GB"
   config.default_currency = "GBP"
-  config.org_key = 'XXXYYYZZZ' # this is fake!
+  config.org_key = 'XXXYYYZZZ' # this is a pretend org key
 end
 ```
 ### ShieldPay::Customer
