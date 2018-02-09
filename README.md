@@ -1,8 +1,8 @@
-# ShieldPay
+<img src="https://apiuat.shieldpay.com/images/img-shieldpay-logo-color.svg" width="300">
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/shieldpay`. To experiment with that code, run `bin/console` for an interactive prompt.
+# ShieldPay Ruby gem
 
-TODO: Delete this and the text above, and describe your gem
+User the ShieldPay api using this gem.
 
 ## Installation
 
@@ -22,7 +22,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### ShieldPay::Customer
+Create a customer using ShieldPay::Customer.create e.g.
+
+```ruby
+customer = ShieldPay::Customer.create(display_name: "Dave Bananas", email: "dave@bananas.com", mobile_no: "555 12345")
+#=> creates a customer in the ShieldPay database - returning the customer_key
+```
+
+#### Attributes
+`display_name` The customer's name
+`email` Their email
+`mobile_no` ...and their mobile
+`customer_key` After creating the customer there's a customer key that should be stored in your database for working with ShieldPay.
 
 ## Development
 
