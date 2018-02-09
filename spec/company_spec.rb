@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe ShieldPay::Company do
   it 'creates a company' do
-    params = {
+    stubbed_params = {
       "CountryCode" => "GB",
       "Email" => "chris@bananas.com",
       "Identifier" => "00000001",
       "Phone" => "555 12345",
     }
 
-    stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
-                                     params,
+    stub_request = stub_post_request("/Customer/CreateCompany",
+                                     stubbed_params,
                                      "company/created_successfully.json")
 
     company = ShieldPay::Company.create(email: "chris@bananas.com",
@@ -32,34 +32,34 @@ describe ShieldPay::Company do
   end
 
   it "can't create a company that already exists" do
-    params = {
+    stubbed_params = {
       "CountryCode" => "GB",
       "Email" => "chris@bananas.com",
       "Identifier" => "00000001",
       "Phone" => "555 12345",
     }
 
-    stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
-                                     params,
+    stub_request = stub_post_request("/Customer/CreateCompany",
+                                     stubbed_params,
                                      "company/already_exists.json")
 
     attrs = {
       email: "chris@bananas.com", identifier: "00000001", phone: "555 12345"
     }
-    expected_error = ShieldPay::Errors::AlreadyExists
+    expected_error = ShieldPay::Errors::CompanyAlreadyExists
     expect { ShieldPay::Company.create(attrs) }.to raise_error(expected_error)
   end
 
   it "can't create a company where the company identifier can't be found" do
-    params = {
+    stubbed_params = {
       "CountryCode" => "GB",
       "Email" => "chris@bananas.com",
       "Identifier" => "00000001",
       "Phone" => "555 12345",
     }
 
-    stub_request = stub_post_request("/Customer/CreateRegisterCustomer",
-                                     params,
+    stub_request = stub_post_request("/Customer/CreateCompany",
+                                     stubbed_params,
                                      "company/invalid_identifier.json")
 
     attrs = {

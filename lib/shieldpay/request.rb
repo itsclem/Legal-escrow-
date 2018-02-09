@@ -8,7 +8,8 @@ module ShieldPay
     include HTTParty
     include Errors
 
-    def post(url, params)
+    def post(path, params)
+      url = ShieldPay.configuration.endpoint_url + path
       params = add_auth_key(params)
       attrs = {
         body: camel_cased_keys(params).to_json,

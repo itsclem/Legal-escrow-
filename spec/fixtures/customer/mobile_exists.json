@@ -1,0 +1,11 @@
+{
+  "coreRes": {
+    "status": 2,
+    "userMessage": "This mobile no. '555 12345' already registered with ShieldPay",
+    "errorNo": "1",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null
+  },
+  "Data": ""
+}

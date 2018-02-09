@@ -13,9 +13,7 @@ module ShieldPay
     # phone          no 	     Contact phone number for company
     def self.create(params={})
       params[:country_code] ||= ShieldPay.configuration.country_code
-      path = "/Customer/CreateRegisterCustomer"
-      url = ShieldPay.configuration.endpoint_url + path
-      response = Request.new.post(url, params)
+      response = Request.new.post("/Customer/CreateCompany", params)
 
       customer_key = response["Data"]["CustomerKey"]
       new(response["Data"]["Data"]).tap do |c|
