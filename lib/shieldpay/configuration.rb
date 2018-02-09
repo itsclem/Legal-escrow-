@@ -1,10 +1,10 @@
 module ShieldPay
   class Configuration
-    attr_accessor :org_key
     attr_accessor :country_code
     attr_accessor :debug
     attr_accessor :default_currency
     attr_accessor :endpoint_url
+    attr_accessor :org_key
 
     def initialize
       @org_key = nil

@@ -12,7 +12,7 @@ module ShieldPay
       url = ShieldPay.configuration.endpoint_url + path
       params = add_auth_key(params)
       attrs = {
-        body: camel_cased_keys(params).to_json,
+        body: processed_params(params),
         headers: headers
       }
       attrs[:debug_output] = $stdout if debug_mode?
@@ -58,6 +58,15 @@ module ShieldPay
       check_for_error(as_json)
       display_debug(response.body)
       as_json
+    end
+
+    def processed_params(params)
+      params = camel_cased_keys(params)
+      # set the values to strings
+      params.inject({}) do |result, (key, value)|
+        result[key] = value.to_s
+        result
+      end.to_json
     end
 
     def underscore_to_camel_case(string)

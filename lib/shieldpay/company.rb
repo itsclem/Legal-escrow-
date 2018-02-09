@@ -7,10 +7,10 @@ module ShieldPay
 
     # Contact Params
     # Parameter      Optional?  Description
-    # country_code   no	       The country code for this organization (i.e. GB) Defaults to ShieldPay.configuration.country_code
-    # email	         no	       Email address for contact person
-    # identifier     no	       Company number for your region (i.e. Companies House Number)
-    # phone          no 	     Contact phone number for company
+    # country_code   no	        The country code for this organization (i.e. GB) Defaults to ShieldPay.configuration.country_code
+    # email	         no	        Email address for contact person
+    # identifier     no	        Company number for your region (i.e. Companies House Number)
+    # phone          no 	      Contact phone number for company
     def self.create(params={})
       params[:country_code] ||= ShieldPay.configuration.country_code
       response = Request.new.post("/Customer/CreateCompany", params)
