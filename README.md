@@ -2,7 +2,7 @@
 
 # ShieldPay Ruby gem
 
-User the ShieldPay api using this gem.
+Use the [ShieldPay api](https://www.shieldpay.com) using this gem.
 
 ## Installation
 
@@ -22,11 +22,33 @@ Or install it yourself as:
 
 ## Usage
 
+### Configuration
+In order to use the ShieldPay api you need to get an organization key from https://www.shieldpay.com. 
+
+#### Configuration options
+Setting|Description|Optional
+-------|-----------|--------
+org_key|This is the organization key you need to use the ShieldPay api|No
+country_code|2 character country code that is the default for your payments|Yes
+debug|Turn debug mode on to see extra messages in your api calls|Yes
+default_currency|If you don't set a currency code in your api calls then this is used|Yes
+endpoint_url|The endpoint url used for the api. You can change this if you want to use the test version of the API. Defaults to https://api.shieldpay.com|Yes
+
+#### Sample configuration
+```Ruby
+ShieldPay.configure do |config|
+  config.country_code = "GB"
+  config.default_currency = "GBP"
+  config.org_key = 'XXXYYYZZZ' # this is fake!
+end
+```
 ### ShieldPay::Customer
 Create a customer using ShieldPay::Customer.create e.g.
 
 ```ruby
-customer = ShieldPay::Customer.create(display_name: "Dave Bananas", email: "dave@bananas.com", mobile_no: "555 12345")
+customer = ShieldPay::Customer.create(display_name: "Dave Bananas", 
+                                      email: "dave@bananas.com", 
+                                      mobile_no: "555 12345")
 #=> creates a customer in the ShieldPay database - returning the customer_key
 ```
 
@@ -41,7 +63,10 @@ Name|Description
 ### ShieldPay::Company
 Create a company to be a ShieldPay user if you know the company's identifier for your region.
 ```ruby
-customer = ShieldPay::Company.create(country_code: "GB", email: "dave@bananas.com", phone: "555 12345", identifier: "ABC123)
+customer = ShieldPay::Company.create(country_code: "GB", 
+                                     email: "dave@bananas.com", 
+                                     phone: "555 12345", 
+                                     identifier: "ABC123)
 #=> creates a company in the ShieldPay database - returning the customer_key
 ```
 #### Company attributes
