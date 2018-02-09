@@ -98,7 +98,7 @@ payment_request = ShieldPay::PaymentRequest.create_with_email(from_email: "suppl
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/shieldpay.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thechrisoshow/shieldpay.
 
 
 ## License
