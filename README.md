@@ -30,12 +30,28 @@ customer = ShieldPay::Customer.create(display_name: "Dave Bananas", email: "dave
 #=> creates a customer in the ShieldPay database - returning the customer_key
 ```
 
-#### Attributes
-`display_name` The customer's name
-`email` Their email
-`mobile_no` ...and their mobile
-`customer_key` After creating the customer there's a customer key that should be stored in your database for working with ShieldPay.
+#### Customer attributes
+Name|Description
+----|-----------
+`display_name`|The customer's name
+`email`|Their email
+`mobile_no`|...and their mobile
+`customer_key`|After creating the customer, a customer key is generated that should be stored in your database for working with ShieldPay.
 
+### ShieldPay::Company
+Create a company to be a ShieldPay user if you know the company's identifier for your region.
+```ruby
+customer = ShieldPay::Company.create(country_code: "GB", email: "dave@bananas.com", phone: "555 12345", identifier: "ABC123)
+#=> creates a company in the ShieldPay database - returning the customer_key
+```
+#### Company attributes
+Name|Description
+----|-----------
+country_code|The country code for this organization (i.e. GB) Defaults to ShieldPay.configuration.country_code
+email|Email address for contact person
+identifier|Company number for your region (i.e. Companies House Number)
+phone|Contact phone number for company
+customer_key|After creating the company a customer key is generated that should be stored in your database for working with ShieldPay.
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
