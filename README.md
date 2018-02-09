@@ -76,11 +76,6 @@ email|Email address for contact person
 identifier|Company number for your region (i.e. Companies House Number)
 phone|Contact phone number for company
 customer_key|After creating the company a customer key is generated that should be stored in your database for working with ShieldPay.
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ### ShieldPay::PaymentRequest
 Used for requesting payment from the supplier to the buyer.
@@ -95,6 +90,13 @@ payment_request = ShieldPay::PaymentRequest.create_with_email(from_email: "suppl
                                                               fee_receiver_email: "bill@thebananashop.com")
 #=> payment_request now has a payment_request_key to keep track of how the payment request is going.
 ```
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
 
 ## Contributing
 
