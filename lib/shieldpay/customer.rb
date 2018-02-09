@@ -4,10 +4,9 @@ module ShieldPay
 
     # Contact Params
     # Parameter      Optional?  Description
-    # country_code   no	       The country code for this organization (i.e. GB) Defaults to ShieldPay.configuration.country_code
+    # display_name   no	       The customer's name
     # email	         no	       Email address for contact person
-    # identifier     no	       Company number for your region (i.e. Companies House Number)
-    # phone          no 	     Contact phone number for company
+    # mobile_no      no 	     This customer's mobile number
     def self.create(params={})
       response = Request.new.post("/Customer/CreateRegisterCustomer", params)
 

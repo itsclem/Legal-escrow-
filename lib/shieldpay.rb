@@ -5,6 +5,7 @@ require "shieldpay/version"
 
 require "shieldpay/company"
 require "shieldpay/customer"
+require "shieldpay/payment_request"
 
 module ShieldPay
   class << self

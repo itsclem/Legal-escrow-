@@ -24,13 +24,13 @@ module ShieldPay
 
     def check_for_error(response_body)
       user_message = response_body['coreRes']['userMessage']
-      raise_error(user_message) if has_error?(user_message)
+      raise_error(user_message) if has_error?(response_body)
     end
 
     private
 
-    def has_error?(user_message)
-      user_message != 'Successful'
+    def has_error?(response_body)
+      response_body['coreRes']['status'].to_i != 1
     end
 
     def raise_error(user_message)

@@ -7,6 +7,7 @@ RSpec.configure do |config|
   config.before(:all) do
     ShieldPay.configure do |config|
       config.country_code = "GB"
+      config.default_currency = "GBP"
       config.org_key = 'test'
     end
   end
