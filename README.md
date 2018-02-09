@@ -1,7 +1,5 @@
-<img src="https://apiuat.shieldpay.com/images/img-shieldpay-logo-color.svg" width="300">
-
 # ShieldPay Ruby gem
-
+<img src="https://apiuat.shieldpay.com/images/img-shieldpay-logo-color.svg" width="300">
 Use the [ShieldPay api](https://www.shieldpay.com) using this gem.
 
 ## Installation
@@ -52,7 +50,7 @@ customer = ShieldPay::Customer.create(display_name: "Dave Bananas",
 #=> creates a customer in the ShieldPay database - returning the customer_key
 ```
 
-#### Customer attributes
+#### ShieldPay::Customer attributes
 Name|Description
 ----|-----------
 `display_name`|The customer's name
@@ -69,7 +67,7 @@ customer = ShieldPay::Company.create(country_code: "GB",
                                      identifier: "ABC123)
 #=> creates a company in the ShieldPay database - returning the customer_key
 ```
-#### Company attributes
+#### ShieldPay::Company attributes
 Name|Description
 ----|-----------
 country_code|The country code for this organization (i.e. GB) Defaults to ShieldPay.configuration.country_code
@@ -82,6 +80,20 @@ customer_key|After creating the company a customer key is generated that should 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+### ShieldPay::PaymentRequest
+Used for requesting payment from the supplier to the buyer.
+```ruby
+payment_request = ShieldPay::PaymentRequest.create_with_email(from_email: "supplier@bananas.com",
+                                                              request_from: "Banana Farms Inc.",
+                                                              amount: 100.45,
+                                                              currency_code: "GBP",
+                                                              description: "20 boxes of bananas",
+                                                              to_email: "dave@bananafans.com",
+                                                              fee_receiver_amount: 15.50,
+                                                              fee_receiver_email: "bill@thebananashop.com")
+#=> payment_request now has a payment_request_key to keep track of how the payment request is going.
+```
 
 ## Contributing
 
