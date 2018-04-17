@@ -62,10 +62,10 @@ Name|Description
 ### ShieldPay::Company
 Create a company to be a ShieldPay user if you know the company's identifier for your region.
 ```ruby
-customer = ShieldPay::Company.create(country_code: "GB", 
+customer_key = ShieldPay::Company.create(country_code: "GB", 
                                      email: "dave@bananas.com", 
                                      phone: "555 12345", 
-                                     identifier: "ABC123)
+                                     identifier: "ABC123")
 #=> creates a company in the ShieldPay database - returning the customer_key
 ```
 #### ShieldPay::Company attributes
