@@ -9,7 +9,7 @@ require "shieldpay/payment_request"
 
 module ShieldPay
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
   end
 
   def self.configuration
