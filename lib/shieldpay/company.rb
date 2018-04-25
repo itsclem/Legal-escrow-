@@ -2,7 +2,8 @@ module ShieldPay
   class Company
 
     attr_accessor :address, :country_code, :customer_key, :created_on, :email,
-                  :identifier, :locality, :name, :phone, :post_code
+                  :identifier, :locality, :name, :phone, :post_code,
+                  :kyc_status
 
 
     # Contact Params
@@ -16,10 +17,16 @@ module ShieldPay
       response = Request.new.post("/Customer/CreateCompany", params)
 
       customer_key = response["Data"]["CustomerKey"]
+      kyc_status = nil
+      if customer_key.is_a?(Hash)
+        kyc_status = customer_key["KYCStatus"]
+        customer_key = customer_key["CustomerKey"]
+      end
       new(response["Data"]["Data"]).tap do |c|
         c.country_code = params[:country_code]
         c.customer_key = customer_key
         c.identifier = params[:identifier]
+        c.kyc_status = kyc_status
         c.phone = params[:phone]
       end
     end

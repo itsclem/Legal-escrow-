@@ -27,7 +27,8 @@ describe ShieldPay::Company do
     expect(company.address).to eq("93 Bananas Road")
     expect(company.locality).to eq("London")
     expect(company.post_code).to eq("SW1A 1AA")
-    expected_time = Time.parse("2018-02-09T11:03:08.9005669+00:00")
+    expect(company.kyc_status).to eq("Verified")
+    expected_time = Time.parse("2018-04-25 13:55:12.964171000 +0000")
     expect(company.created_on).to eq(expected_time)
   end
 
