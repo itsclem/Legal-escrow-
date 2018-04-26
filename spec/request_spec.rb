@@ -10,4 +10,20 @@ describe ShieldPay::Request do
     expect { ShieldPay::Company.create }.to raise_error(expected_error)
   end
 
+  it 'camel cases the keys' do
+    stub_request = stub_post_request("/Customer/CreateCompany",
+                                     { "CountryCode" => 'NZ' },
+                                     "company/created_successfully.json")
+    ShieldPay::Company.create(country_code: "NZ")
+    assert_requested(stub_request)
+  end
+
+  it "certain keys aren't in camel case" do
+    stub_request = stub_post_request("/BankDetail/AddBankDetail",
+                                     { "IBAN" => '555555' },
+                                     "company/created_successfully.json")
+    ShieldPay::BankDetail.create(iban: "555555")
+    assert_requested(stub_request)
+  end
+
 end

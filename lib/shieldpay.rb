@@ -3,6 +3,7 @@ require "shieldpay/errors"
 require "shieldpay/request"
 require "shieldpay/version"
 
+require "shieldpay/bank_detail"
 require "shieldpay/company"
 require "shieldpay/customer"
 require "shieldpay/payment_request"

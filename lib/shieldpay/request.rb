@@ -8,6 +8,8 @@ module ShieldPay
     include HTTParty
     include Errors
 
+    UPPERCASE_KEYS = [:iban]
+
     def post(path, params)
       url = ShieldPay.configuration.endpoint_url + path
       params = add_auth_key(params)
@@ -25,13 +27,6 @@ module ShieldPay
     def add_auth_key(params)
       params["organization_key"] = ShieldPay.configuration.org_key
       params
-    end
-
-    def camel_cased_keys(params)
-      params.inject({}) do |result, (key, value)|
-        result[underscore_to_camel_case(key)] = value
-        result
-      end
     end
 
     def debug_mode?
@@ -60,8 +55,19 @@ module ShieldPay
       as_json
     end
 
+    def processed_keys(keys)
+      keys.inject({}) do |result, (key, value)|
+        if UPPERCASE_KEYS.include?(key)
+          result[key.upcase] = value
+        else
+          result[underscore_to_camel_case(key)] = value
+        end
+        result
+      end
+    end
+
     def processed_params(params)
-      params = camel_cased_keys(params)
+      params = processed_keys(params)
       # set the values to strings
       params.inject({}) do |result, (key, value)|
         result[key] = value.to_s
