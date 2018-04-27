@@ -22,7 +22,7 @@ describe ShieldPay::Request do
     stub_request = stub_post_request("/BankDetail/AddBankDetail",
                                      { "IBAN" => '555555' },
                                      "company/created_successfully.json")
-    ShieldPay::BankDetail.create(iban: "555555")
+    ShieldPay::BankDetail.update(iban: "555555")
     assert_requested(stub_request)
   end
 
