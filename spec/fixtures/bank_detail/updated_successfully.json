@@ -1,0 +1,61 @@
+{
+  "coreRes": {
+    "status": 1,
+    "userMessage": "Success",
+    "errorNo": "0",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null,
+    "RequestTime": "0001-01-01T00:00:00",
+    "ResponseTime": "0001-01-01T00:00:00"
+  },
+  "Data": {
+    "Result": {
+      "IsSuccess": true,
+      "Message": "Record Created Successfully !",
+      "Data": {
+        "ID": 2580,
+        "AccountID": 8482,
+        "BankID": 1,
+        "AccountHolderName": "Mr Bananas",
+        "BankAccountNumber": "765432",
+        "BankCode": null,
+        "IsActive": true,
+        "IsPrimary": true,
+        "CreatedBy": 8447,
+        "CreatedOn": "2018-04-27T12:44:37.2926497+00:00",
+        "ModifiedBy": 8447,
+        "ModifiedOn": "2018-04-27T12:44:37.2926497+00:00",
+        "UserId": 8447,
+        "CountryId": 19,
+        "CurrencyId": 47,
+        "FirstName": null,
+        "LastName": null,
+        "City": null,
+        "AddressLine1": null,
+        "PostalCode": null,
+        "Dob": null,
+        "RoutingNumber": "123456",
+        "AccountHolderType": null,
+        "BankName": null,
+        "AddressLine2": null,
+        "IsDeleted": false,
+        "BankProvince": null,
+        "IBAN": "123456",
+        "tblBank": null,
+        "tblCountry": null,
+        "tblCurrency": null,
+        "tblCurrency1": null,
+        "tblCurrency2": null
+      }
+    },
+    "Id": 362,
+    "Exception": null,
+    "Status": 5,
+    "IsCanceled": false,
+    "IsCompleted": true,
+    "CreationOptions": 0,
+    "AsyncState": null,
+    "IsFaulted": false
+  }
+}
