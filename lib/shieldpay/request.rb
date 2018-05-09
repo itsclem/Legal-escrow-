@@ -8,7 +8,7 @@ module ShieldPay
     include HTTParty
     include Errors
 
-    UPPERCASE_KEYS = [:iban]
+    UPPERCASE_KEYS = ["iban"]
 
     def post(path, params)
       url = ShieldPay.configuration.endpoint_url + path

@@ -1,5 +1,6 @@
 module ShieldPay
   class BankDetail
+    extend Helpers
 
     # Contact Params
     # Parameter           Optional?  Description
@@ -10,8 +11,9 @@ module ShieldPay
     # routing_number       no 	     Sort code or routing number
     # iban                 yes       IBAN (if this isn't set, it defaults to the bank account number)
     def self.update(params={})
-      if !params[:iban] || params[:iban].size == 0
-        params[:iban] = params[:bank_account_number]
+      stringify_keys!(params)
+      if !params["iban"] || params["iban"].size == 0
+        params["iban"] = params["bank_account_number"]
       end
       response = Request.new.post("/BankDetail/AddBankDetail", params)
       response.dig("Data", "Result", "IsSuccess")

@@ -5,7 +5,17 @@
     "errorNo": "0",
     "suggestdRemedialAction": null,
     "msgType": 0,
-    "TokenList": null
+    "TokenList": null,
+    "RequestTime": "0001-01-01T00:00:00",
+    "ResponseTime":"0001-01-01T00:00:00"
   },
-  "Data": "ZZZZZZZZZZZ="
+  "Data": {
+    "CustomerKey": "ZZZZZZZZZZZ=",
+    "KYCStatus": "Verified",
+    "KYCVerifiedDateTime": "2018-05-09T15:56:11.5323072+00:00",
+    "EmailStatus": "Verified",
+    "EmailVerifiedDateTime": "2018-05-09T15:56:11.5323072+00:00",
+    "IdVerificationStatus": "Not Verified",
+    "IdVerificationDateTime": null
+  }
 }

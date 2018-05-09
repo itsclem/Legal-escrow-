@@ -1,0 +1,23 @@
+{
+  "coreRes": {
+    "status": 1,
+    "userMessage": "Address verified.",
+    "errorNo": "0",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null,
+    "RequestTime": "0001-01-01T00:00:00",
+    "ResponseTime":"0001-01-01T00:00:00"
+  },
+  "Data": {
+    "FirstName": "Dave",
+    "LastName": "",
+    "Email": "test1@test.com", "DisplayName": null,
+    "UserName": "test1@test.com",
+    "UserId": "9610",
+    "EmailConfirmed": true,
+    "AddressVerified": true,
+    "SessionTockenID": null,
+    "PhoneNo": null
+  }
+}

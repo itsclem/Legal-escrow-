@@ -1,3 +1,4 @@
+require "shieldpay/helpers"
 require "shieldpay/configuration"
 require "shieldpay/errors"
 require "shieldpay/request"
