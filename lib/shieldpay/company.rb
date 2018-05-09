@@ -18,10 +18,10 @@ module ShieldPay
       params["country_code"] ||= ShieldPay.configuration.country_code
       response = Request.new.post("/Customer/CreateCompany", params)
 
-      customer_key = response["Data"]["CustomerKey"]
+      customer_key = response.dig("Data", "CustomerKey")
       kyc_status = nil
       if customer_key.is_a?(Hash)
-        kyc_status = customer_key["KYCStatus"]
+        kyc_status = customer_key["KYCStatus"] == "Verified"
         customer_key = customer_key["CustomerKey"]
       end
       new(response["Data"]["Data"]).tap do |c|
@@ -40,6 +40,10 @@ module ShieldPay
       @locality = attrs["Locality"]
       @name = attrs["CompanyName"]
       @post_code = attrs["PostalCode"]
+    end
+
+    def kyc_verified?
+      @kyc_status
     end
 
   end
