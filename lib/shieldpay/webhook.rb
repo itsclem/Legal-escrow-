@@ -2,6 +2,8 @@ module ShieldPay
   class Webhook
     extend Helpers
 
+    attr_accessor :url, :events
+
     EVENT_CODES = {
       initiated: "1", add_fund: "2", accepted: "3", sender_complete: "4",
       receiver_complete: "5", funds_available: "6",
@@ -45,6 +47,37 @@ module ShieldPay
       end
       response = Request.new.post("/Webhook/Add", params)
       response.dig("coreRes", "userMessage") == "Request successful"
+    end
+
+    def self.all
+      response = Request.new.post("/Webhook/AllByOrgKey", {})
+      response["Data"].collect do |webhook|
+        new(webhook["URL"], webhook["WebhookEventBinding"])
+      end
+    end
+
+    def initialize(url, events)
+      @url = url
+      @events = parse_events(events)
+    end
+
+    private
+
+    def parse_events(events)
+      @events = events.collect do |hsh|
+        event_name = hsh["EventName"]
+        # remove spaces
+        event_name = event_name.tr(" ", "-")
+        underscore(event_name).to_sym
+      end
+    end
+
+    def underscore(string)
+      string.gsub(/::/, '/').
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        tr("-", "_").
+        downcase
     end
 
   end
