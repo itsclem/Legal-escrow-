@@ -21,7 +21,7 @@ module ShieldPay
       customer_key = response.dig("Data", "CustomerKey")
       kyc_status = nil
       if customer_key.is_a?(Hash)
-        kyc_status = customer_key["KYCStatus"] == "Verified"
+        kyc_status = customer_key["KYCStatus"]
         customer_key = customer_key["CustomerKey"]
       end
       new(response["Data"]["Data"]).tap do |c|

@@ -2,7 +2,7 @@ module ShieldPay
   class BankDetail
     extend Helpers
 
-    # Contact Params
+    # Bank Detail Params
     # Parameter           Optional?  Description
     # account_holder_name  no 	     Name of the bank account holder
     # bank_account_number  no        Bank account number
