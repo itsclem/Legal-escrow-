@@ -2,7 +2,7 @@ module ShieldPay
   class Webhook
     extend Helpers
 
-    attr_accessor :url, :events
+    attr_accessor :events, :id, :url
 
     EVENT_CODES = {
       initiated: "1", add_fund: "2", accepted: "3", sender_complete: "4",
@@ -49,14 +49,27 @@ module ShieldPay
       response.dig("coreRes", "userMessage") == "Request successful"
     end
 
+    # returns all the webhooks registered with ShieldPay
     def self.all
       response = Request.new.post("/Webhook/AllByOrgKey", {})
       response["Data"].collect do |webhook|
-        new(webhook["URL"], webhook["WebhookEventBinding"])
+        new(webhook["WebhookId"],
+            webhook["URL"],
+            webhook["WebhookEventBinding"])
       end
     end
 
-    def initialize(url, events)
+    # takes in the webhook id to delete a webhook
+    def self.delete(id)
+      params = {
+        webhook_id: id
+      }
+      response = Request.new.post("/Webhook/WebhookDelete", params)
+      response["Data"] == "Success"
+    end
+
+    def initialize(id, url, events)
+      @id = id
       @url = url
       @events = parse_events(events)
     end

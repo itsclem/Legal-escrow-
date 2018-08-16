@@ -51,9 +51,24 @@ describe ShieldPay::Webhook do
       expect(result.size).to eq(2)
       expect(result[0].url).to eq("https://www.testing.com/shieldpay/webhook")
       expect(result[0].events).to eq([:initiated, :add_fund])
+      expect(result[0].id).to eq("xxxxx-xxxx-xxxx-xxxx-xxxxxxx1")
 
       expect(result[1].url).to eq("https://www.testing.com/shieldpay/other")
       expect(result[1].events).to eq([:funds_available])
+      expect(result[1].id).to eq("xxxxx-xxxx-xxxx-xxxx-xxxxxxx2")
+    end
+  end
+
+  describe 'delete' do
+    it 'deletes a webhook' do
+      stubbed_params = {
+        "WebhookId" => "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx1"
+      }
+      stub_request = stub_post_request("/Webhook/WebhookDelete", stubbed_params,
+                                       "webhook/deleted.json")
+
+      result = ShieldPay::Webhook.delete("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx1")
+      expect(result).to be_truthy
     end
   end
 end

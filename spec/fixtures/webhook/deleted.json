@@ -1,0 +1,13 @@
+{
+  "coreRes": {
+    "status": 1,
+    "userMessage": "Webhook successfully deleted",
+    "errorNo": "0",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null,
+    "RequestTime": "0001-01-01T00:00:00",
+    "ResponseTime": "0001-01-01T00:00:00"
+  },
+  "Data": "Success"
+}
