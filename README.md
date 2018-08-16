@@ -22,7 +22,7 @@ Or install it yourself as:
 ## Usage
 
 ### Configuration
-In order to use the ShieldPay api you need to get an organization key from https://www.shieldpay.com. 
+In order to use the ShieldPay api you need to get an organization key from https://www.shieldpay.com.
 
 #### Configuration options
 Setting|Description|Optional
@@ -45,8 +45,8 @@ end
 Create a customer using ShieldPay::Customer.create e.g.
 
 ```ruby
-customer = ShieldPay::Customer.create(display_name: "Dave Bananas", 
-                                      email: "dave@bananas.com", 
+customer = ShieldPay::Customer.create(display_name: "Dave Bananas",
+                                      email: "dave@bananas.com",
                                       mobile_no: "555 12345")
 #=> creates a customer in the ShieldPay database - returning the customer_key
 ```
@@ -62,9 +62,9 @@ Name|Description
 ### ShieldPay::Company
 Create a company to be a ShieldPay user if you know the company's identifier for your region.
 ```ruby
-customer_key = ShieldPay::Company.create(country_code: "GB", 
-                                     email: "dave@bananas.com", 
-                                     phone: "555 12345", 
+customer_key = ShieldPay::Company.create(country_code: "GB",
+                                     email: "dave@bananas.com",
+                                     phone: "555 12345",
                                      identifier: "ABC123")
 #=> creates a company in the ShieldPay database - returning the customer_key
 ```
@@ -91,6 +91,43 @@ payment_request = ShieldPay::PaymentRequest.create_with_email(from_email: "suppl
 #=> payment_request now has a payment_request_key to keep track of how the payment request is going.
 ```
 
+### ShieldPay::Webhook
+
+Used for adding webhook urls for various events.
+```ruby
+ShieldPay::WebHook.add(url: "https://www.yoursite.com/shieldpay_callback",
+                       events: [:initiated, :funds_available])
+```
+
+You can get a list of all the current setup webhooks with `.all`.
+```ruby
+ShieldPay::WebHook.all
+#=> this returns a list of webhook objects complete with url, events and id
+```
+
+If you want to remove a webhook, use the delete command with the id you returned from the `.all` command.
+```ruby
+ShieldPay::Webhook.delete("zzzzz-zzzzzzz-zzzzzzz-zzzzzz")
+```
+
+Here's a list of the events you can add webhooks for:
+```
+  initiated
+  add_fund
+  accepted
+  sender_complete
+  receiver_complete
+  funds_available
+  receiver_decline_before_accept
+  sender_cancelled_before_funded
+  payment_generated
+  funding_pending  
+  sender_cancelled_after_funded
+  refund_in_progress
+  customer_status
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -106,4 +143,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/thechr
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
