@@ -17,6 +17,7 @@ module ShieldPay
     # Parameter           Optional?  Description
     # url                  no 	     The url that shieldpay will call for webhooks
     # events               no        The events that this webhook will monitor
+    #                                (defaults to all events)
     #                                Options are:
     #                                :initated, :add_fund, :accepted, :sender_complete,
     #                                :receiver_complete, :funds_available,
@@ -31,20 +32,25 @@ module ShieldPay
       if url.nil? || url.size == 0
         raise Errors::RequiredField.new("url is a required field")
       end
-      events = input_params["events"]
-      if events.nil? || events.size == 0
-        raise Errors::RequiredField.new("events is a required field")
-      end
       params = { "Url" => url }
-      params[:webhook_event_binding] = events.collect do |event|
-        event_code = EVENT_CODES[event.to_sym]
-        if event_code.nil?
-          raise Errors::RequiredField.new("#{event} is not a valid event")
+      events = input_params["events"]
+      event_codes =  if events.nil? || events.size == 0
+        EVENT_CODES.values
+      else
+        events.collect do |event|
+          event_code = EVENT_CODES[event.to_sym]
+          if event_code.nil?
+            raise Errors::RequiredField.new("#{event} is not a valid event")
+          end
+          event_code
         end
-        {
-          "EventId" => event_code
-        }
       end
+
+
+      params[:webhook_event_binding] = event_codes.collect do |event_code|
+        { "EventId" => event_code }
+      end
+
       response = Request.new.post("/Webhook/Add", params)
       response.dig("coreRes", "userMessage") == "Request successful"
     end

@@ -26,6 +26,30 @@ describe ShieldPay::Webhook do
       expect(result).to be_truthy
     end
 
+    it 'assumes all events if none set' do
+      stubbed_params = {
+        "Url" => "https://www.testing.com/shieldpay/webhook",
+        "WebhookEventBinding" =>
+        [
+          { "EventId" => "1" }, { "EventId" => "2" }, { "EventId" => "3" },
+          { "EventId" => "4" }, { "EventId" => "5" }, { "EventId" => "6" },
+          { "EventId" => "7" }, { "EventId" => "8" }, { "EventId" => "9" },
+          { "EventId" => "10" }, { "EventId" => "11" }, { "EventId" => "12" },
+          { "EventId" => "13" }
+        ].to_s
+      }
+
+      stub_request = stub_post_request("/Webhook/Add",
+                                       stubbed_params,
+                                       "webhook/added_successfully.json")
+
+      webhook_params = {
+        url: "https://www.testing.com/shieldpay/webhook"
+      }
+      result = ShieldPay::Webhook.add(webhook_params)
+      expect(result).to be_truthy
+    end
+
     it 'raises an exception if an event is not defined' do
       webhook_params = {
         url: "https://www.testing.com/shieldpay/webhook",
@@ -57,6 +81,7 @@ describe ShieldPay::Webhook do
       expect(result[1].events).to eq([:funds_available])
       expect(result[1].id).to eq("xxxxx-xxxx-xxxx-xxxx-xxxxxxx2")
     end
+
   end
 
   describe 'delete' do
