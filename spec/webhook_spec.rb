@@ -11,7 +11,7 @@ describe ShieldPay::Webhook do
         [
           { "EventId" => "1" },
           { "EventId" => "2" }
-        ].to_s
+        ].to_json
       }
 
       stub_request = stub_post_request("/Webhook/Add",
@@ -36,7 +36,7 @@ describe ShieldPay::Webhook do
           { "EventId" => "7" }, { "EventId" => "8" }, { "EventId" => "9" },
           { "EventId" => "10" }, { "EventId" => "11" }, { "EventId" => "12" },
           { "EventId" => "13" }
-        ].to_s
+        ].to_json
       }
 
       stub_request = stub_post_request("/Webhook/Add",

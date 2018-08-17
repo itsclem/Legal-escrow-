@@ -5,12 +5,12 @@ module ShieldPay
     attr_accessor :events, :id, :url
 
     EVENT_CODES = {
-      initiated: 1, add_fund: 2, accepted: 3, sender_complete: 4,
-      receiver_complete: 5, funds_available: 6,
-      receiver_decline_before_accept: 7, sender_cancelled_before_funded: 8,
-      payment_generated: 9, funding_pending: 10,
-      sender_cancelled_after_funded: 11, refund_in_progress: 12,
-      customer_status: 13
+      initiated: "1", add_fund: "2", accepted: "3", sender_complete: "4",
+      receiver_complete: "5", funds_available: "6",
+      receiver_decline_before_accept: "7", sender_cancelled_before_funded: "8",
+      payment_generated: "9", funding_pending: "10",
+      sender_cancelled_after_funded: "11", refund_in_progress: "12",
+      customer_status: "13"
     }
 
     # Webhook Params
@@ -49,7 +49,7 @@ module ShieldPay
 
       params[:webhook_event_binding] = event_codes.collect do |event_code|
         { "EventId" => event_code }
-      end
+      end.to_json
 
       response = Request.new.post("/Webhook/Add", params)
       response.dig("coreRes", "userMessage") == "Request successful"
