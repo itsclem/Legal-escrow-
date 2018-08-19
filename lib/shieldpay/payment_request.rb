@@ -6,9 +6,11 @@ module ShieldPay
 
     def self.create_with_email(params={})
       stringify_keys!(params)
-      params["batch_reference"] = 0
+      params["batch_reference"] = "0"
       params["currency_code"] ||= ShieldPay.configuration.default_currency
       params["target_currency_code"] ||= ShieldPay.configuration.default_currency
+      params["amount"] = params["amount"].to_s # must be a string for some reason
+      params["fee_receiver_amount"] = params["fee_receiver_amount"].to_s # must be a string for some reason
 
       response = Request.new.post("/Transaction/PaymentRequestByEmailId",
                                   params)

@@ -67,12 +67,7 @@ module ShieldPay
     end
 
     def processed_params(params)
-      params = processed_keys(params)
-      # set the values to strings
-      params.inject({}) do |result, (key, value)|
-        result[key] = value.to_s
-        result
-      end.to_json
+      processed_keys(params).to_json
     end
 
     def underscore_to_camel_case(string)
