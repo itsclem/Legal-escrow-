@@ -121,6 +121,7 @@ Here's a list of the events you can add webhooks for:
   receiver_decline_before_accept
   sender_cancelled_before_funded
   payment_generated
+  payment_completed
   funding_pending  
   sender_cancelled_after_funded
   refund_in_progress

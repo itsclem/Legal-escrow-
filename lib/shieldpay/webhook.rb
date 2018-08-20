@@ -8,9 +8,9 @@ module ShieldPay
       initiated: '1', add_fund: '2', accepted: '3', sender_complete: '4',
       receiver_complete: '5', funds_available: '6',
       receiver_decline_before_accept: '7', sender_cancelled_before_funded: '8',
-      payment_generated: '9', funding_pending: '10',
-      sender_cancelled_after_funded: '11', refund_in_progress: '12',
-      customer_status: '13'
+      payment_generated: '9', payment_completed: '10', funding_pending: '11',
+      sender_cancelled_after_funded: '12', refund_in_progress: '13',
+      customer_status: '14'
     }
 
     # Webhook Params
@@ -23,7 +23,8 @@ module ShieldPay
     #                                :receiver_complete, :funds_available,
     #                                :receiver_decline_before_accept,
     #                                :sender_cancelled_before_funded,
-    #                                :payment_generated, :funding_pending,
+    #                                :payment_generated, :payment_completed,
+    #                                :funding_pending,
     #                                :sender_cancelled_after_funded,
     #                                :refund_in_progress, :customer_status
     def self.add(input_params={})
