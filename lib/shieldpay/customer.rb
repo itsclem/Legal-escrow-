@@ -2,7 +2,8 @@ module ShieldPay
   class Customer
     extend Helpers
 
-    attr_accessor :customer_key, :kyc_verified
+    attr_accessor :customer_key, :kyc_verified, :display_name, :email,
+                  :mobile_no
 
     # Contact Params
     # Parameter      Optional?  Description
@@ -18,6 +19,9 @@ module ShieldPay
       new.tap do |c|
         c.customer_key = customer_key
         c.kyc_verified = kyc_verified
+        c.display_name = params["display_name"]
+        c.email = params["email"]
+        c.mobile_no = params["mobile_no"]
       end
     end
 
