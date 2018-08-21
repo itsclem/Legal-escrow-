@@ -75,6 +75,10 @@ module ShieldPay
       response["Data"] == "Success"
     end
 
+    def self.event_name_from_id(event_id)
+      EVENT_CODES.key(event_id.to_s)
+    end
+
     def initialize(id, url, events)
       @id = id
       @url = url

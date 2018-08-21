@@ -35,7 +35,7 @@ describe ShieldPay::Webhook do
           { "EventId" => "4" }, { "EventId" => "5" }, { "EventId" => "6" },
           { "EventId" => "7" }, { "EventId" => "8" }, { "EventId" => "9" },
           { "EventId" => "10" }, { "EventId" => "11" }, { "EventId" => "12" },
-          { "EventId" => "13" }
+          { "EventId" => "13" }, { "EventId" => "14" }
         ]
       }
 
@@ -94,6 +94,18 @@ describe ShieldPay::Webhook do
 
       result = ShieldPay::Webhook.delete("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx1")
       expect(result).to be_truthy
+    end
+  end
+
+  describe 'event_name_from_id' do
+    it 'finds the event name from the id' do
+      actual = ShieldPay::Webhook.event_name_from_id("13")
+      expect(actual).to eq(:refund_in_progress)
+    end
+
+    it "doesn't matter if the id is a number" do
+      actual = ShieldPay::Webhook.event_name_from_id(2)
+      expect(actual).to eq(:add_fund)
     end
   end
 end
