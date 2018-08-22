@@ -1,6 +1,8 @@
 module ShieldPay
   module Errors
 
+    class OtherShieldPayError < StandardError; end
+
     # standard errors
     class InvalidOrganizationKey     < StandardError; end
     class OrganizationKeyDoesntExist < StandardError; end
@@ -20,8 +22,7 @@ module ShieldPay
       "OrganizationKey is not valid." => InvalidOrganizationKey,
       "OrganizationKey is not exists." => OrganizationKeyDoesntExist,
 
-      "Company identifier already exist. " \
-      "Please contact your system administrator" => CompanyAlreadyExists,
+      "Company identifier already exists." => CompanyAlreadyExists,
       "Company identifier could not be validated" => InvalidCompanyIdentifier,
 
       "Email already exists." => CustomerEmailExists,
@@ -42,7 +43,7 @@ module ShieldPay
     end
 
     def raise_error(user_message)
-      error_klass = ERROR_MATCHING[user_message] || StandardError
+      error_klass = ERROR_MATCHING[user_message] || OtherShieldPayError
 
       raise error_klass.new(user_message)
     end
