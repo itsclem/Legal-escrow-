@@ -16,6 +16,7 @@ module ShieldPay
     class AddressNotVerified  < StandardError; end
     class CustomerEmailExists < StandardError; end
     class CustomerDoesntExist < StandardError; end
+    class CustomerMobileExists < StandardError; end
 
     ERROR_MATCHING = {
       "Invalid Organization key." => InvalidOrganizationKey,
@@ -29,6 +30,8 @@ module ShieldPay
       "Customer does not exist" => CustomerDoesntExist,
       "Address not verified." => AddressNotVerified,
       "Address not varified, Exception in Request" => AddressNotVerified,
+
+      "This mobile number is already registered." => CustomerMobileExists
     }
 
     def check_for_error(response_body)
