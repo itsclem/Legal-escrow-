@@ -31,7 +31,7 @@ org_key|This is the organization key you need to use the ShieldPay api|No
 country_code|2 character country code that is the default for your payments|Yes
 debug|Turn debug mode on to see extra messages in your api calls|Yes
 default_currency|If you don't set a currency code in your api calls then this is used|Yes
-endpoint_url|The endpoint url used for the api. You can change this if you want to use the test version of the API. Defaults to https://api.shieldpay.com|Yes
+uat|Whether you want to access the uat version of the shieldpay api. Defaults to false|Yes
 
 #### Sample configuration
 ```Ruby

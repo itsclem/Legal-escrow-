@@ -11,7 +11,7 @@ module ShieldPay
     UPPERCASE_KEYS = ["iban"]
 
     def post(path, params)
-      url = ShieldPay.configuration.endpoint_url + path
+      url = ShieldPay.configuration.api_endpoint_url + path
       params = add_auth_key(params)
       attrs = {
         body: processed_params(params),
