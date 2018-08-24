@@ -1,0 +1,18 @@
+{
+  "coreRes": {
+    "status": 1,
+    "userMessage": "Transaction Status changed",
+    "errorNo": "0",
+    "suggestdRemedialAction": null,
+    "msgType": 0,
+    "TokenList": null,
+    "RequestTime": "0001-01-01T00:00:00",
+    "ResponseTime": "0001-01-01T00:00:00"
+  },
+  "Data": {
+    "CustomerId": "xxx",
+    "transactionID": "yyy",
+    "transactionStatusId": 12,
+    "OrganizationKey": "test"
+  }
+}
