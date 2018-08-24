@@ -8,6 +8,7 @@ require "shieldpay/bank_detail"
 require "shieldpay/company"
 require "shieldpay/customer"
 require "shieldpay/payment_request"
+require "shieldpay/transaction"
 require "shieldpay/webhook"
 
 module ShieldPay

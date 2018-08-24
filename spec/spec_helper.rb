@@ -9,6 +9,7 @@ RSpec.configure do |config|
       config.country_code = "GB"
       config.default_currency = "GBP"
       config.org_key = 'test'
+      config.uat = true
     end
   end
 end
@@ -19,7 +20,7 @@ end
 
 def stub_post_request(path, params, json_file)
   params["OrganizationKey"] = ShieldPay.configuration.org_key
-  url = ShieldPay.configuration.endpoint_url + path
+  url = ShieldPay.configuration.api_endpoint_url + path
 
   stub_request(:post, url)
     .with(body: params)
