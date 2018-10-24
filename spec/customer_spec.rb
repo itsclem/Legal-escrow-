@@ -63,7 +63,7 @@ describe ShieldPay::Customer do
       title: "Mr", first_name: "Dave", last_name: "Bananas", gender: "m",
       date_of_birth: Date.parse("02-11-1954"), flat_number: "16 Abc Building",
       building_number: "99", street: "Geezer Street", state: "London",
-      town: "London", post_code: "B1 B22", country: "United Kingdom",
+      town: "London", postcode: "B1 B22", country: "United Kingdom",
       customer_key: "XXXXXX"
     }
     result = ShieldPay::Customer.kyc_verify(attrs)
