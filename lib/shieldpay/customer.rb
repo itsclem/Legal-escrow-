@@ -47,6 +47,7 @@ module ShieldPay
         raise ShieldPay::Errors::RequiredField.new("customer_key field is required to verify this customer. You can create a customer_key field using the Customer.create method")
       end
       params["gender"] = params.delete("gender").to_s.upcase
+      params["date_of_birth"] = Date.parse(params["date_of_birth"].to_s).to_s
       response = Request.new.post("/Customer/KYCVerification", params)
       kyc_verified = response["Data"].dig("AddressVerified")
       new.tap do |c|

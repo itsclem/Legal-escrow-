@@ -69,4 +69,37 @@ describe ShieldPay::Customer do
     result = ShieldPay::Customer.kyc_verify(attrs)
     expect(result.kyc_verified?).to be_truthy
   end
+
+  it 'works with a string date of birth' do
+    stubbed_params = {
+      "Title" => "Mr",
+      "FirstName" => "Dave",
+      "LastName" => "Bananas",
+      "Gender" => "M",
+      "DateOfBirth" => "1977-02-01",
+      "FlatNumber" => "16 Abc Building",
+      "BuildingNumber" => "99",
+      "Street" => "Geezer Street",
+      "State" => "London",
+      "Town" => "London",
+      "Postcode" => "B1 B22",
+      "Country" => "United Kingdom",
+      "CustomerKey" => "XXXXXX"
+    }
+
+    stub_request = stub_post_request("/Customer/KYCVerification",
+                                     stubbed_params,
+                                     "customer/kyc_verified_successfully.json")
+
+    attrs = {
+      title: "Mr", first_name: "Dave", last_name: "Bananas", gender: "m",
+      date_of_birth: "Tue Feb 01 1977 00:00:00 GMT-0600",
+      flat_number: "16 Abc Building", building_number: "99",
+      street: "Geezer Street", state: "London",
+      town: "London", postcode: "B1 B22", country: "United Kingdom",
+      customer_key: "XXXXXX"
+    }
+    result = ShieldPay::Customer.kyc_verify(attrs)
+    expect(result.kyc_verified?).to be_truthy
+  end
 end
